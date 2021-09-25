@@ -10,4 +10,5 @@ contract('Tokemon', function (/* accounts */) {
     await Tokemon.deployed();
     return assert.isTrue(true);
   });
+  it('');
 });
