@@ -23,6 +23,7 @@ contract('TokemonToken', function (accounts) {
         from: account1,
       }
     );
+    console.log(result);
     expect(result.receipt.status).to.equal(true);
   });
 });
