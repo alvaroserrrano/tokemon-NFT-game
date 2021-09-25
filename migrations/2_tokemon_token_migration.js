@@ -1,5 +1,5 @@
-const Tokemon = artifacts.require('TokemonToken');
+const TokemonToken = artifacts.require('TokemonToken');
 
 module.exports = function (deployer) {
-  deployer.deploy(Tokemon, 'Tokemon', 'TNFT');
+  deployer.deploy(TokemonToken, 'TokemonToken', 'TNFT');
 };
