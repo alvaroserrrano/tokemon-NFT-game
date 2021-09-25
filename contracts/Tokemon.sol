@@ -10,9 +10,43 @@ contract TokemonToken is TokemonFactory  {
     ERC721(_name, _symbol)
   {}
 
-  uint256 fee = 0.01 ether;
+  /**
+  * @dev Token owner can withdraw
+  */
+  function withdraw() external onlyOwner() payable {
+    address payable _owner = payable(owner());
+    _owner.transfer(address(this).balance);
+  }
 
-  function updateFee(uint256 _fee) external onlyOwner {
-    fee = _fee;
+  // GETTERS
+  /** @dev get tokemons
+  */
+  function getTokemons() public view returns(Tokemon[] memory) {
+    return tokemons;
+  }
+
+  /** @dev Get tokemons by owner
+  */
+  function getOwnerTokemons(address _owner) public view returns (Tokemon[] memory) {
+    Tokemon[] memory ownerTokemons = new Tokemon[](balanceOf(_owner));
+    uint256 ownerTokemonCount = 0;
+    for (uint256 i = 0; i < tokemons.length; i++) {
+      if (ownerOf(i) == _owner) {
+        ownerTokemons[i] = tokemons[i];
+        ownerTokemonCount++;
+      }
+    }
+    return ownerTokemons;
+  }
+
+  //SETTERS
+  /**
+  * @dev Level up a tokemon
+  * @param _tokemonId The id of the tokemon to level up
+  * requires that _tokemonId is owned by the caller
+  */
+  function levelUp(uint256 _tokemonId) public onlyOwner() {
+    Tokemon storage tokemon = tokemons[_tokemonId];
+    tokemon.level++;
   }
 }

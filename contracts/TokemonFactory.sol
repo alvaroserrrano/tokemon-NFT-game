@@ -19,6 +19,8 @@ abstract contract TokemonFactory is Ownable, ERC721 {
     uint8 rarity;
   }
 
+	uint256 fee;
+
 	uint256 COUNT;
 
 	Tokemon[] public tokemons;
@@ -57,6 +59,15 @@ abstract contract TokemonFactory is Ownable, ERC721 {
 		_safeMint(msg.sender, COUNT);
 		emit NewTokemon(msg.sender, COUNT, randomDna);
 		COUNT++;
+	}
+
+	//EXTERNAL FUNCTIONS ONLY ACCESSIBLE BY OWNERS
+	/**
+	* @dev Token owner can update the fee
+	* @param _fee The new fee
+	*/
+	function updateFee(uint256 _fee) external onlyOwner() {
+		fee = _fee;
 	}
 
 	// PUBLIC FUNCTIONS
