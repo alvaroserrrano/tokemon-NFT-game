@@ -21,8 +21,6 @@ abstract contract TokemonFactory is Ownable, ERC721 {
 
 	uint256 COUNT;
 
-	uint256 fee = 0.01 ether; 
-
 	Tokemon[] public tokemons;
 
 	mapping(uint256 => address) public tokemonToOwner;
