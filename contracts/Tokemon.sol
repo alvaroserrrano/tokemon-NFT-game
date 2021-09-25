@@ -10,5 +10,9 @@ contract TokemonToken is TokemonFactory  {
     ERC721(_name, _symbol)
   {}
 
-  
+  uint256 fee = 0.01 ether;
+
+  function updateFee(uint256 _fee) external onlyOwner {
+    fee = _fee;
+  }
 }
