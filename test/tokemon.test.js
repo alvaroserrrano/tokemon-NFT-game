@@ -35,10 +35,11 @@ contract('TokemonToken', function (accounts) {
     expect(result.logs[0].event).to.be.equal('Transfer');
     expect(result.logs[1].event).to.be.equal('NewTokemon');
     expect(result.receipt.status).to.equal(true);
-    const resultAfterTokemonCreated =
-      await tokemonContractInstance.getTokemons();
-    expect(resultAfterTokemonCreated.length).to.equal(1);
-    expect(resultAfterTokemonCreated[0].name).to.equal(tokemonNames[0]);
-    expect(resultAfterTokemonCreated[0].level).to.equal('1');
+    const tokemons = await tokemonContractInstance.getTokemons();
+    expect(tokemons.length).to.equal(1);
+    expect(tokemons[0].name).to.equal(tokemonNames[0]);
+    expect(tokemons[0].level).to.equal('1');
+    const account1Balance = await tokemonContractInstance.balanceOf(account1);
+    expect(account1Balance.toNumber()).to.equal(1);
   });
 });
