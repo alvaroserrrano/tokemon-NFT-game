@@ -27,16 +27,19 @@ const BlockchainContextProvider: React.FC = ({ children }) => {
   const [web3, setWeb3] = React.useState(null);
   const [errorMessage, setErrorMessage] = React.useState('');
 
+  const blockchainContextValue = React.useMemo(
+    () => ({
+      loading,
+      account,
+      tokemonToken,
+      web3,
+      errorMessage,
+    }),
+    [loading, account, tokemonToken, web3, errorMessage]
+  );
+
   return (
-    <BlockchainContext.Provider
-      value={{
-        loading,
-        account,
-        tokemonToken,
-        web3,
-        errorMessage,
-      }}
-    >
+    <BlockchainContext.Provider value={blockchainContextValue}>
       {children}
     </BlockchainContext.Provider>
   );
