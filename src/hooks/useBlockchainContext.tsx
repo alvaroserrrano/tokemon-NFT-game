@@ -1,5 +1,5 @@
 import React from 'react';
-import { BlockchainContext } from '../context/BlockchainContext';
+import { BlockchainContext } from '../context/blockchain/blockchainContext';
 
 // context consumer hook
 const useBlockchainContext = () => {

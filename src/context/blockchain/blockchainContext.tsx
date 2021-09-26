@@ -1,8 +1,9 @@
 // Blockchain context
 
 import React from 'react';
+import { blockchainReducer } from './blockchainReducer';
 
-interface IBlockchainContextState {
+export interface IBlockchainContextState {
   loading: boolean;
   account: string;
   tokemonToken: string; // TODO
@@ -10,7 +11,7 @@ interface IBlockchainContextState {
   errorMessage: string;
 }
 
-interface IBlockchainContextValue {
+export interface IBlockchainContextValue {
   state: IBlockchainContextState;
   dispatch: React.Dispatch<any>;
 }
@@ -25,13 +26,13 @@ type ACCOUNT_UPDATE_PAYLOAD = {
   account: string;
 };
 
-type ACTIONTYPE =
+export type ACTIONTYPE =
   | { type: 'CONNECTION_REQUEST'; payload: boolean }
   | { type: 'CONNECTION_SUCCESS'; payload: CONNECTION_SUCCESS_PAYLOAD }
   | { type: 'CONNECTION_FAIL'; payload: string }
   | { type: 'ACCOUNT_UPDATE'; payload: ACCOUNT_UPDATE_PAYLOAD };
 
-const initialState: IBlockchainContextState = {
+export const initialState: IBlockchainContextState = {
   loading: false,
   account: '',
   tokemonToken: '',
@@ -39,8 +40,9 @@ const initialState: IBlockchainContextState = {
   errorMessage: '',
 };
 
-const BlockchainContext =
-  React.createContext<IBlockchainContextState>(initialState);
+const BlockchainContext = React.createContext<IBlockchainContextState>(
+  {} as IBlockchainContextState
+);
 
 const BlockchainContextProvider: React.FC<IBlockchainContextValue> = ({
   children,
@@ -52,30 +54,6 @@ const BlockchainContextProvider: React.FC<IBlockchainContextValue> = ({
   const [errorMessage, setErrorMessage] = React.useState('');
 
   // Context Update Setters
-
-  const blockchainReducer = (
-    state: typeof initialState,
-    action: ACTIONTYPE
-  ): IBlockchainContextState => {
-    switch (action.type) {
-      case 'CONNECTION_REQUEST':
-        return { ...state, loading: true };
-      case 'CONNECTION_SUCCESS':
-        return {
-          ...state,
-          loading: false,
-          account: action.payload.account,
-          tokemonToken: action.payload.tokemonToken,
-          web3: action.payload.web3,
-        };
-      case 'CONNECTION_FAIL':
-        return { ...state, loading: false, errorMessage: action.payload };
-      case 'ACCOUNT_UPDATE':
-        return { ...state, account: action.payload.account };
-      default:
-        return state;
-    }
-  };
 
   const [state, dispatch] = React.useReducer(blockchainReducer, initialState);
 
