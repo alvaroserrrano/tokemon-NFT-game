@@ -1,4 +1,5 @@
 const Tokemon = artifacts.require('TokemonToken');
+const utils = require('./helpers/utils');
 
 const tokemonNames = ['testokemon', 'toketest'];
 /*
@@ -41,5 +42,15 @@ contract('TokemonToken', function (accounts) {
     expect(tokemons[0].level).to.equal('1');
     const account1Balance = await tokemonContractInstance.balanceOf(account1);
     expect(account1Balance.toNumber()).to.equal(1);
+  });
+  it('should not allow two tokemons being created', async () => {
+    await tokemonContractInstance.createRandomTokemon(tokemonNames[0], {
+      from: account1,
+    });
+    await utils.shouldThrow(
+      tokemonContractInstance.createRandomTokemon(tokemonNames[1], {
+        from: account1,
+      })
+    );
   });
 });
