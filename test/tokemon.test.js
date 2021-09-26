@@ -16,6 +16,15 @@ contract('TokemonToken', function (accounts) {
     await Tokemon.deployed();
     return assert.isTrue(true);
   });
+  it('should deploy contract properly', async () => {
+    const TokemonToken = await Tokemon.deployed();
+    expect(TokemonToken.address).to.not.be.null;
+  });
+  it('sets an owner', async () => {
+    const owner = await tokemonContractInstance.owner.call();
+    expect(owner).to.equal(account1);
+    expect(owner).to.not.equal(account2);
+  });
   it('should create a new tokemon', async () => {
     const result = await tokemonContractInstance.createRandomTokemon(
       tokemonNames[0],
@@ -23,7 +32,13 @@ contract('TokemonToken', function (accounts) {
         from: account1,
       }
     );
-    console.log(result);
+    expect(result.logs[0].event).to.be.equal('Transfer');
+    expect(result.logs[1].event).to.be.equal('NewTokemon');
     expect(result.receipt.status).to.equal(true);
+    const resultAfterTokemonCreated =
+      await tokemonContractInstance.getTokemons();
+    expect(resultAfterTokemonCreated.length).to.equal(1);
+    expect(resultAfterTokemonCreated[0].name).to.equal(tokemonNames[0]);
+    expect(resultAfterTokemonCreated[0].level).to.equal('1');
   });
 });

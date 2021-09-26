@@ -17,7 +17,7 @@ abstract contract TokemonFactory is Ownable, ERC721 {
     uint256 dna;
     uint32 level;
     uint8 rarity;
-  }
+	}
 
 	uint256 fee;
 
