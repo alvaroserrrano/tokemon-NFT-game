@@ -40,9 +40,10 @@ export const initialState: IBlockchainContextState = {
   errorMessage: '',
 };
 
-const BlockchainContext = React.createContext<IBlockchainContextState>(
-  {} as IBlockchainContextState
-);
+const BlockchainContext = React.createContext<IBlockchainContextValue>({
+  state: initialState,
+  dispatch: () => {}, // initialise with an empty function
+});
 
 type BlockchainContextProviderProps = {
   children: React.ReactNode;
