@@ -44,9 +44,13 @@ const BlockchainContext = React.createContext<IBlockchainContextState>(
   {} as IBlockchainContextState
 );
 
-const BlockchainContextProvider: React.FC<IBlockchainContextValue> = ({
+type BlockchainContextProviderProps = {
+  children: React.ReactNode;
+};
+
+const BlockchainContextProvider = ({
   children,
-}) => {
+}: BlockchainContextProviderProps) => {
   const [loading, setLoading] = React.useState(false);
   const [account, setAccount] = React.useState('');
   const [tokemonToken, setTokemonToken] = React.useState(null);
