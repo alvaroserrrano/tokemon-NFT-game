@@ -36,6 +36,8 @@ contract('TokemonToken', function (accounts) {
     expect(result.logs[0].event).to.be.equal('Transfer');
     expect(result.logs[1].event).to.be.equal('NewTokemon');
     expect(result.receipt.status).to.equal(true);
+    expect(results.logs[1].args.id).to.equal(0);
+    expect(results.logs[1].args.name).to.equal(tokemonNames[0]);
     const tokemons = await tokemonContractInstance.getTokemons();
     expect(tokemons.length).to.equal(1);
     expect(tokemons[0].name).to.equal(tokemonNames[0]);

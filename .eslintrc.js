@@ -1,5 +1,5 @@
 module.exports = {
-  plugins: ['truffle', 'react', '@typescript-eslint'],
+  plugins: ['react', '@typescript-eslint'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -8,7 +8,6 @@ module.exports = {
   },
   env: {
     mocha: true, // for test files
-    'truffle/globals': true, // same as "truffle/truffle": true
   },
   settings: {
     react: {

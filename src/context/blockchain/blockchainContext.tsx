@@ -1,6 +1,7 @@
 // Blockchain context
 
 import React from 'react';
+import { WithChildren } from '../../types/withChildren';
 import { blockchainReducer } from './blockchainReducer';
 
 export interface IBlockchainContextState {
@@ -46,7 +47,7 @@ const BlockchainContext = React.createContext<IBlockchainContextValue>({
 });
 
 type BlockchainContextProviderProps = {
-  children: React.ReactNode;
+  children: WithChildren<{}>;
 };
 
 const BlockchainContextProvider = ({

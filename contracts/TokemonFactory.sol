@@ -8,7 +8,7 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 abstract contract TokemonFactory is Ownable, ERC721 {
 
 	// EVENTS
-	event NewTokemon(address indexed owner, uint256 id, uint256 dna);
+	event NewTokemon(address indexed owner, uint256 id, uint256 dna, string name);
 
 	// VARIABLES
 	struct Tokemon {
