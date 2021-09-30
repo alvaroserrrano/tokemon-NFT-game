@@ -1,10 +1,14 @@
 import React from 'react';
+import './App.css';
+import backgroundImage from './assets/background/backgroundImageColor.png';
 
-function App() {
+function App(): JSX.Element {
   return (
-    <div className='flex flex-col w-full bg-gray-400 h-full bg-cover'>
-      hello
-    </div>
+    <>
+      <div className='w-full absolute top-0 left-0 h-full bg-cover bg-fixed'>
+        <img src={backgroundImage} />
+      </div>
+    </>
   );
 }
 
