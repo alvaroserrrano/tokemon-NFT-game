@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import { BlockchainContextProvider } from './context/blockchain/blockchainContext';
 import reportWebVitals from './reportWebVitals';
 import './styles/tailwind.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BlockchainContextProvider>
+      <App />
+    </BlockchainContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

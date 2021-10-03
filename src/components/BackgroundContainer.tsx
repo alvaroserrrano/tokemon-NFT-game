@@ -1,5 +1,5 @@
 import React from 'react';
-import backgroundImageColor from './assets/background/backgroundImageColor.png';
+import backgroundImageColor from '../assets/background/backgroundImageColor.png';
 
 interface BakcgroundContainerProps {
   children: React.ReactNode | React.ReactNode[];
